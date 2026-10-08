@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import {
-  ArrowDownToLine, ArrowLeft, ArrowRight, Check, Copy, ExternalLink, Facebook,
+  ArrowDownToLine, ArrowRight, Check, Copy, ExternalLink, Facebook,
   Globe2, Instagram, Linkedin, Mail, MapPin, Phone, ShieldCheck,
-  Sparkles, UserRound, Youtube, MessageCircle, CreditCard, MapPinned
+  UserRound, Youtube, MessageCircle, CreditCard, MapPinned
 } from 'lucide-react'
 import type { LucideProps } from 'lucide-react'
 import type { CardProfile, SocialKey } from './profiles'
@@ -69,16 +69,6 @@ const downloadContact = (p: CardProfile) => {
 function Brand({ light = false }: { light?: boolean }) {
   return <img className={`brand-logo ${light ? 'brand-logo-light' : ''}`} src="/tapiq-logo.png" alt="Tapiq" />
 }
-function Directory() {
-  return <div className="directory-page"><header className="site-header"><Brand light/><span className="header-tag">DIGITAL BUSINESS CARDS</span></header>
-    <main className="directory-main"><div className="eyebrow"><Sparkles size={15}/> THE TAP-TO-CONNECT EXPERIENCE</div>
-      <h1>One tap.<br/><span>Every connection.</span></h1>
-      <p>A thoughtfully designed digital identity for your next introduction. Open a sample profile below to explore the Tapiq experience.</p>
-      <div className="profile-list">{profiles.map(p => <a className="profile-link" href={`/p/${encodeURIComponent(p.slug)}`} key={p.slug}><div className="tiny-avatar">{p.initials}</div><div><strong>{p.name}</strong><span>{p.role} · Demo profile</span></div><ArrowRight size={19}/></a>)}</div>
-      <p className="small-note">Sample data only. Create a customer profile in <code>src/profiles.ts</code> and deploy to publish it.</p>
-    </main><footer className="directory-footer">Made to connect. Powered by <Brand light/>.</footer>
-  </div>
-}
 function Profile({ p }: { p: CardProfile }) {
   const [copied, setCopied] = useState(false)
   // Show configured social links in a predictable order.
@@ -128,4 +118,3 @@ export function App() {
   // No profile picker, directory, or intermediate click.
   return <Profile p={profiles[0]}/>
 }
-function NotFound(){return <div className="not-found"><Brand/><h1>Profile not found</h1><p>Check the link or return to the Tapiq directory.</p><a href="/">Back to profiles <ArrowRight size={17}/></a></div>}
